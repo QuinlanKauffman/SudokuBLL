@@ -64,6 +64,18 @@ i = i + 1
 		return false;
 	}
 
+	
+	public int[] getColumn(int iCol)
+	{
+		int[] intColumn = new int[myLatinSquare.length];
+		
+		for (int i = 0; i < length.myLatinSquare; i++)
+		{
+			intColumn[i] = myLatinSquare[iCol][i];
+		}
+		return intColumn;		
+	}
+	
 	public LatinSquare() {
 		
 	}
