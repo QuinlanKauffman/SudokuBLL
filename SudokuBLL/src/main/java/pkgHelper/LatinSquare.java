@@ -2,7 +2,8 @@ package pkgHelper;
 
 import java.util.Arrays;
 
-public class LatinSquare {
+public class LatinSquare 
+{
 /*Rules for a Latin Square
 	-No number is repeated in any column or row
 	-Every element in the first row must match the elements in the first row
@@ -18,50 +19,95 @@ Rules for java array
 		New array length is 4
 	-Default value for int is 0
 	-"System.out.println(Arrays.toString(arr));"
+	-Column first, then row
+
+Constructor creates an instance of an object
+.jar files is Java Archive
+Maven handles existing external dependencies
+	-So can be on same versions, etc
+
 
 i++ 
 i = i + 1
 */	
-	private int[][] LatinSquare(){
+	private int[][] myLatinSquare;
+	
+	public  boolean ContainsZero() 
+	{
+		//Passing in nothing
+		return false;
+		for (int iCol = 0; iCol < myLatinSquare.length;iCol++)
+		{
+			for (int iRow = 0; iRow< myLatinSquare.length;iRow++)
+			{
+				if (myLatinSquare[iCol][iRow] == 0)
+					return true;
+					//break
+			}
+			
+		}
+	}
+	
+	public boolean doesElementExist(int[] arr, int iValue)
+	{
 		
+		//Passes a 1-D array of integers
+		//Passes 
+		
+		for (int i = 0; i < arr.length;i++)
+		{
+			if (arr[i] == iValue)
+			{
+				return true;
+			}
+		}
+		return false;
 	}
 
 	public LatinSquare() {
 		
 	}
-	public LatinSquare(int[][] latinSquare) {
+	public LatinSquare(int[][] myLatinSquare) {
 		super();
-		LatinSquare = latinSquare;
+		//myLatinSquare = myLatinSquare;
 	}
 	
-	public int[][] getLatinSquare() {
-		return LatinSquare;
+	public int[][] getLatinSquare() 
+	{
+		return myLatinSquare;
 	}
-	public void setLatinSquare(int[][] latinSquare) {
-		LatinSquare = latinSquare;
+	public void setLatinSquare(int[][] latinSquare) 
+	{
+		LatinSquare = myLatinSquare;
 	}
 	
-	public boolean hasDuplicates(int [] arr) {
+	public boolean hasDuplicates(int [] arr)
+	{
 		boolean hasDuplicates = false;
 		if (arr==null)
 			return false;
 		
 		Arrays.sort(arr);
 		
-		for (int i=0;i<arr.length-1;i++) {
-			if (arr[i]==arr[i+1]) {
+		for (int i=0;i<arr.length-1;i++) 
+		{
+			if (arr[i]==arr[i+1]) 
+			{
 				hasDuplicates = true;
 				break;
-			}
-				
+			}	
 		}
-		
 		return hasDuplicates;
 	}
 	
+	
+	
+	
+	
 	int[] arr = new int[9];
 	
-	for (int i = 0; i < arr.length;i++) {
+	for (int i = 0; i < arr.length;i++)
+	{
 		//Each part of for loop is optional
 		//Can declare i before the for loop
 		System.out.println(arr[i]);
