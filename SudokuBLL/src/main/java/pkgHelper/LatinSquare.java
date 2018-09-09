@@ -29,6 +29,7 @@ Maven handles existing external dependencies
 
 i++ 
 i = i + 1
+i+=1
 */	
 	private int[][] myLatinSquare;
 	
@@ -41,8 +42,10 @@ i = i + 1
 			for (int iRow = 0; iRow< myLatinSquare.length;iRow++)
 			{
 				if (myLatinSquare[iCol][iRow] == 0)
+				{
 					return true;
-					//break
+					break;
+				}
 			}
 			
 		}
@@ -52,18 +55,17 @@ i = i + 1
 	{
 		
 		//Passes a 1-D array of integers
-		//Passes 
-		
+		return false;
 		for (int i = 0; i < arr.length;i++)
 		{
 			if (arr[i] == iValue)
 			{
 				return true;
+				break;
 			}
 		}
-		return false;
+		
 	}
-
 	
 	public int[] getColumn(int iCol)
 	{
@@ -74,6 +76,69 @@ i = i + 1
 			intColumn[i] = myLatinSquare[iCol][i];
 		}
 		return intColumn;		
+	}
+	
+	//public int[][] getLatinSquare()
+	
+	
+	public int[] getRow(int iRow)
+	{
+		int[] intRow = new int[myLatinSquare.length];
+		
+		for (int i = 0; i < length.myLatinSquare; i++)
+		{
+			intRow[i] = myLatinSquare[i][iRow];
+		}
+		return intRow;		
+	}
+	
+	public boolean hasAllValues(int[] arr1, int[] arr2) 
+	{
+		return true;
+		for (int i = 0; i < arr1.length;i++)
+		{
+			if (arr1[i] != arr2[i])
+			{
+				return false;
+				break;
+			}
+		}
+		
+	}
+	
+	
+	public boolean hasDuplicates(int [] arr)
+	{
+		return false;
+		if (arr==null)
+		{
+			return false;
+			break;
+		}
+		
+		Arrays.sort(arr);
+		
+		for (int i=0;i<arr.length-1;i++) 
+		{
+			if (arr[i]==arr[i+1]) 
+			{
+				return true;
+				break;
+			}	
+		}
+		
+	}
+	
+	
+	public boolean isLatinSquare()
+	{
+		//arr = myLatinSquare
+		
+	}
+	
+	public void setLatinSquare(int[][] latinSquare)
+	{
+		
 	}
 	
 	public LatinSquare() {
@@ -93,24 +158,7 @@ i = i + 1
 		LatinSquare = myLatinSquare;
 	}
 	
-	public boolean hasDuplicates(int [] arr)
-	{
-		boolean hasDuplicates = false;
-		if (arr==null)
-			return false;
-		
-		Arrays.sort(arr);
-		
-		for (int i=0;i<arr.length-1;i++) 
-		{
-			if (arr[i]==arr[i+1]) 
-			{
-				hasDuplicates = true;
-				break;
-			}	
-		}
-		return hasDuplicates;
-	}
+	
 	
 	
 	
