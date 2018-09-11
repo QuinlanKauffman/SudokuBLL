@@ -132,8 +132,19 @@ i+=1
 	
 	public boolean isLatinSquare()
 	{
-		//arr = myLatinSquare
-		//use the methods already created, like getColumn, hasAllValues, hasDuplicates
+		/*
+		 * arr = myLatinSquare
+		use the methods already created, like getColumn, hasAllValues, hasDuplicates
+		
+		Check 
+			hasDuplicates(1 array)
+			hasAllValues(2 different arrays)
+			doesElementExist(1 array and 1 array of i=1:n)
+		Need
+			getColumn(iCol)
+			getRow(iRow)
+ 			array of i=1:myLatinSquare.length
+		 */
 	}
 	
 	
@@ -141,6 +152,7 @@ i+=1
 	public LatinSquare() {
 		
 	}
+	
 	public LatinSquare(int[][] myLatinSquare) {
 		super();
 		//myLatinSquare = myLatinSquare;
@@ -160,10 +172,8 @@ i+=1
 	
 	
 	
-	
-	
-	
-	
+	//can use with the hasAllValues method
+	//can use to set up an array from i=1:n of i's
 	int[] arr = new int[9];
 	
 	for (int i = 0; i < arr.length;i++)
