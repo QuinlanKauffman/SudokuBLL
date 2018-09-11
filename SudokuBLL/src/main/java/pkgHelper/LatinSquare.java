@@ -35,9 +35,8 @@ i+=1
 	
 	public  boolean ContainsZero() 
 	{
-		private boolean a;
+		boolean a = false;
 		//Passing in nothing
-		a = false;
 		
 		for (int iCol = 0; iCol < myLatinSquare.length;iCol++)
 		{
@@ -56,9 +55,9 @@ i+=1
 	
 	public boolean doesElementExist(int[] arr, int iValue)
 	{
-		private boolean a;
+		boolean a = false;
 		//Passes a 1-D array of integers
-		a = false;
+		
 		
 		for (int i = 0; i < arr.length;i++)
 		{
@@ -97,8 +96,7 @@ i+=1
 	
 	public boolean hasAllValues(int[] arr1, int[] arr2) 
 	{
-		private boolean a;
-		a = true;
+		boolean a = true;
 		
 		
 		Arrays.sort(arr1);
@@ -119,8 +117,7 @@ i+=1
 	
 	public boolean hasDuplicates(int [] arr)
 	{
-		private boolean a;
-		a = false;
+		boolean a = false;
 		//return false by default
 		
 		Arrays.sort(arr);
@@ -147,8 +144,7 @@ i+=1
 		//don't actually need the doesElementExist method
 		//already covered
 		//don't need ContainsZero method
-		private boolean a;
-		a = true; //return true by default
+		boolean a = true; //return true by default
 		
 		/*
 		if (ContainsZero == true)
@@ -158,7 +154,7 @@ i+=1
 		}
 		*/
 		
-		private int[] arr = new int[myLatinSquare.length]; 
+		int[] arr = new int[myLatinSquare.length]; 
 		//used in the hasAllValues method
 		for (int i = 0; i < arr.length;i++)
 		{
