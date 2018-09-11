@@ -73,12 +73,11 @@ i+=1
 		
 		for (int i = 0; i < myLatinSquare.length; i++)
 		{
-			intColumn[i] = myLatinSquare[iCol][i];
+			intColumn[i] = myLatinSquare[i][iCol];
 		}
 		return intColumn;		
 	}
 	
-	//public int[][] getLatinSquare()
 	
 	
 	public int[] getRow(int iRow)
@@ -87,7 +86,7 @@ i+=1
 		
 		for (int i = 0; i < myLatinSquare.length; i++)
 		{
-			intRow[i] = myLatinSquare[i][iRow];
+			intRow[i] = myLatinSquare[iRow][i];
 		}
 		return intRow;		
 	}
@@ -132,6 +131,63 @@ i+=1
 	
 	public boolean isLatinSquare()
 	{
+		//don't actually need the doesElementExist method
+		//already covered
+		//don't need ContainsZero method
+		
+		
+		return true; //return true by default
+		
+		/*
+		if (ContainsZero == false)
+		{
+			return false;
+			break;
+		}
+		*/
+		
+		int[] arr = new int[myLatinSquare.length]; //used in the hasAllValues method
+		for (int i = 0; i < arr.length;i++)
+		{
+			arr[i] = i+1;
+			//'arr' is an array of 1,2,3,...,n
+		}
+		
+		
+		for (int iRow = 0;iRow<myLatinSquare.length;iRow++)
+		{
+			if (hasAllValues(getRow(iRow), arr) == false)
+			//checks all rows of 'myLatinSquare' 
+			{
+				return false;
+				break;
+		
+			}
+			
+			if (hasDuplicates(getRow(iRow))==false)
+			{
+				return false;
+				break;
+			}
+		}
+		
+		for (int iCol = 0; iCol < myLatinSquare.length;iCol++)
+		{
+			if (hasAllValues(getColumn(iCol),arr)==false)
+			{
+				return false;
+				break;
+			}
+			
+			if (hasDuplicates(getColumn(iCol))==false)
+			{
+				return false;
+				break;
+			}
+		}
+		
+		
+		
 		/*
 		 * arr = myLatinSquare
 		use the methods already created, like getColumn, hasAllValues, hasDuplicates
@@ -149,9 +205,9 @@ i+=1
 	
 	
 	
-	public LatinSquare() {
+	//public LatinSquare() {
 		
-	}
+	//}
 	
 	public LatinSquare(int[][] myLatinSquare) {
 		super();
