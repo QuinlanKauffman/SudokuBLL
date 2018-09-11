@@ -59,6 +59,7 @@ i+=1
 		private boolean a;
 		//Passes a 1-D array of integers
 		a = false;
+		
 		for (int i = 0; i < arr.length;i++)
 		{
 			if (arr[i] == iValue)
@@ -122,24 +123,21 @@ i+=1
 		a = false;
 		//return false by default
 		
-		
-		if (arr==null)
-		{
-			a =  false;
-		}
-		
-		
 		Arrays.sort(arr);
 		
-		for (int i=0;i<arr.length-1;i++) 
+		if (arr!=null)
 		{
-			if (arr[i]==arr[i+1]) 
+			for (int i=0;i<arr.length-1;i++) 
 			{
-				a =  true;
-				break;
-			}	
-		}
+				if (arr[i]==arr[i+1]) 
+				{
+					a =  true;
+					break;
+				}	
+			}
 		
+		}
+			
 		return a;
 	}
 	
@@ -149,8 +147,8 @@ i+=1
 		//don't actually need the doesElementExist method
 		//already covered
 		//don't need ContainsZero method
-		
-		return true; //return true by default
+		private boolean a;
+		a = true; //return true by default
 		
 		/*
 		if (ContainsZero == true)
@@ -174,14 +172,14 @@ i+=1
 			if (hasAllValues(getRow(iRow), arr) == false)
 			//checks all rows of 'myLatinSquare' 
 			{
-				return false;
+				a = false;
 				break;
 		
 			}
 			
 			if (hasDuplicates(getRow(iRow))==true)
 			{
-				return false;
+				a = false;
 				break;
 			}
 		}
@@ -190,23 +188,22 @@ i+=1
 		{
 			if (hasAllValues(getColumn(iCol),arr)==false)
 			{
-				return false;
+				a = false;
 				break;
 			}
 			
 			if (hasDuplicates(getColumn(iCol))==true)
 			{
-				return false;
+				a = false;
 				break;
 			}
 		}
 		
 		
-		
+		return a;
 		
 	}
-	
-	
+		
 	
 	//public LatinSquare() {
 		
