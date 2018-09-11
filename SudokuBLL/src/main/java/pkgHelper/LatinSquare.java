@@ -71,7 +71,7 @@ i+=1
 	{
 		int[] intColumn = new int[myLatinSquare.length];
 		
-		for (int i = 0; i < length.myLatinSquare; i++)
+		for (int i = 0; i < myLatinSquare.length; i++)
 		{
 			intColumn[i] = myLatinSquare[iCol][i];
 		}
@@ -85,7 +85,7 @@ i+=1
 	{
 		int[] intRow = new int[myLatinSquare.length];
 		
-		for (int i = 0; i < length.myLatinSquare; i++)
+		for (int i = 0; i < myLatinSquare.length; i++)
 		{
 			intRow[i] = myLatinSquare[i][iRow];
 		}
@@ -133,13 +133,10 @@ i+=1
 	public boolean isLatinSquare()
 	{
 		//arr = myLatinSquare
-		
+		//use the methods already created, like getColumn, hasAllValues, hasDuplicates
 	}
 	
-	public void setLatinSquare(int[][] latinSquare)
-	{
-		
-	}
+	
 	
 	public LatinSquare() {
 		
@@ -151,11 +148,14 @@ i+=1
 	
 	public int[][] getLatinSquare() 
 	{
+		//just need to return 'myLatinSquare'
 		return myLatinSquare;
 	}
+	
 	public void setLatinSquare(int[][] latinSquare) 
 	{
-		LatinSquare = myLatinSquare;
+		//setting 'myLatinSquare'
+		myLatinSquare = latinSquare ;
 	}
 	
 	
