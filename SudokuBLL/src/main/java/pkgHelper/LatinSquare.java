@@ -37,11 +37,12 @@ i+=1
 	{
 		//Passing in nothing
 		return false;
+		
 		for (int iCol = 0; iCol < myLatinSquare.length;iCol++)
 		{
 			for (int iRow = 0; iRow< myLatinSquare.length;iRow++)
 			{
-				if (myLatinSquare[iCol][iRow] == 0)
+				if (myLatinSquare[iRow][iCol] == 0)
 				{
 					return true;
 					break;
@@ -94,6 +95,9 @@ i+=1
 	public boolean hasAllValues(int[] arr1, int[] arr2) 
 	{
 		return true;
+		
+		Arrays.sort(arr1);
+		Arrays.sort(arr2);
 		for (int i = 0; i < arr1.length;i++)
 		{
 			if (arr1[i] != arr2[i])
@@ -109,6 +113,8 @@ i+=1
 	public boolean hasDuplicates(int [] arr)
 	{
 		return false;
+		//return false by default
+		
 		if (arr==null)
 		{
 			return false;
@@ -139,14 +145,14 @@ i+=1
 		return true; //return true by default
 		
 		/*
-		if (ContainsZero == false)
+		if (ContainsZero == true)
 		{
 			return false;
 			break;
 		}
 		*/
 		
-		int[] arr = new int[myLatinSquare.length]; //used in the hasAllValues method
+		private int[] arr = new int[myLatinSquare.length]; //used in the hasAllValues method
 		for (int i = 0; i < arr.length;i++)
 		{
 			arr[i] = i+1;
@@ -164,7 +170,7 @@ i+=1
 		
 			}
 			
-			if (hasDuplicates(getRow(iRow))==false)
+			if (hasDuplicates(getRow(iRow))==true)
 			{
 				return false;
 				break;
@@ -179,7 +185,7 @@ i+=1
 				break;
 			}
 			
-			if (hasDuplicates(getColumn(iCol))==false)
+			if (hasDuplicates(getColumn(iCol))==true)
 			{
 				return false;
 				break;
@@ -209,7 +215,8 @@ i+=1
 		
 	//}
 	
-	public LatinSquare(int[][] myLatinSquare) {
+	public LatinSquare(int[][] myLatinSquare) 
+	{
 		super();
 		//myLatinSquare = myLatinSquare;
 	}
@@ -224,20 +231,5 @@ i+=1
 	{
 		//setting 'myLatinSquare'
 		myLatinSquare = latinSquare ;
-	}
-	
-	
-	
-	//can use with the hasAllValues method
-	//can use to set up an array from i=1:n of i's
-	int[] arr = new int[9];
-	
-	for (int i = 0; i < arr.length;i++)
-	{
-		//Each part of for loop is optional
-		//Can declare i before the for loop
-		System.out.println(arr[i]);
-		//Scope of 'i' is just this for loop
-		//Can't call i outside the braces of this for loop
 	}
 }
