@@ -35,8 +35,9 @@ i+=1
 	
 	public  boolean ContainsZero() 
 	{
+		private boolean a;
 		//Passing in nothing
-		return false;
+		a = false;
 		
 		for (int iCol = 0; iCol < myLatinSquare.length;iCol++)
 		{
@@ -44,28 +45,29 @@ i+=1
 			{
 				if (myLatinSquare[iRow][iCol] == 0)
 				{
-					return true;
+					a = true;
 					break;
 				}
 			}
 			
 		}
+		return a;
 	}
 	
 	public boolean doesElementExist(int[] arr, int iValue)
 	{
-		
+		private boolean a;
 		//Passes a 1-D array of integers
-		return false;
+		a = false;
 		for (int i = 0; i < arr.length;i++)
 		{
 			if (arr[i] == iValue)
 			{
-				return true;
+				a = true;
 				break;
 			}
 		}
-		
+		return a;
 	}
 	
 	public int[] getColumn(int iCol)
@@ -94,32 +96,38 @@ i+=1
 	
 	public boolean hasAllValues(int[] arr1, int[] arr2) 
 	{
-		return true;
+		private boolean a;
+		a = true;
+		
 		
 		Arrays.sort(arr1);
+		
 		Arrays.sort(arr2);
+		
 		for (int i = 0; i < arr1.length;i++)
 		{
 			if (arr1[i] != arr2[i])
 			{
-				return false;
+				a = false;
 				break;
 			}
 		}
-		
+		return a;
 	}
 	
 	
 	public boolean hasDuplicates(int [] arr)
 	{
-		return false;
+		private boolean a;
+		a = false;
 		//return false by default
+		
 		
 		if (arr==null)
 		{
-			return false;
-			break;
+			a =  false;
 		}
+		
 		
 		Arrays.sort(arr);
 		
@@ -127,11 +135,12 @@ i+=1
 		{
 			if (arr[i]==arr[i+1]) 
 			{
-				return true;
+				a =  true;
 				break;
 			}	
 		}
 		
+		return a;
 	}
 	
 	
@@ -140,7 +149,6 @@ i+=1
 		//don't actually need the doesElementExist method
 		//already covered
 		//don't need ContainsZero method
-		
 		
 		return true; //return true by default
 		
@@ -152,7 +160,8 @@ i+=1
 		}
 		*/
 		
-		private int[] arr = new int[myLatinSquare.length]; //used in the hasAllValues method
+		private int[] arr = new int[myLatinSquare.length]; 
+		//used in the hasAllValues method
 		for (int i = 0; i < arr.length;i++)
 		{
 			arr[i] = i+1;
@@ -194,19 +203,7 @@ i+=1
 		
 		
 		
-		/*
-		 * arr = myLatinSquare
-		use the methods already created, like getColumn, hasAllValues, hasDuplicates
 		
-		Check 
-			hasDuplicates(1 array)
-			hasAllValues(2 different arrays)
-			doesElementExist(1 array and 1 array of i=1:n)
-		Need
-			getColumn(iCol)
-			getRow(iRow)
- 			array of i=1:myLatinSquare.length
-		 */
 	}
 	
 	
