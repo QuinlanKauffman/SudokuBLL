@@ -4,33 +4,7 @@ import java.util.Arrays;
 
 public class LatinSquare 
 {
-/*Rules for a Latin Square
-	-No number is repeated in any column or row
-	-Every element in the first row must match the elements in the first row
-	-Every element in the first column must match the elements in the first column
-	-For our case, every element is an int
-	-1-D arrays of ints for rows and columns
-	-Entire Latin Square is 2-D array of ints
 
-Rules for java array
-	-Index starts at 0
-	-Once array is sized, it can't be changed
-	-"int [] arr = new int[4]
-		New array length is 4
-	-Default value for int is 0
-	-"System.out.println(Arrays.toString(arr));"
-	-Column first, then row
-
-Constructor creates an instance of an object
-.jar files is Java Archive
-Maven handles existing external dependencies
-	-So can be on same versions, etc
-
-
-i++ 
-i = i + 1
-i+=1
-*/	
 	private int[][] myLatinSquare;
 	
 	public  boolean ContainsZero() 
@@ -146,21 +120,11 @@ i+=1
 		//don't need ContainsZero method
 		boolean a = true; //return true by default
 		
-		/*
-		if (ContainsZero == true)
-		{
-			return false;
-			break;
-		}
-		*/
 		
-		int[] arr = new int[myLatinSquare.length]; 
-		//used in the hasAllValues method
-		for (int i = 0; i < arr.length;i++)
-		{
-			arr[i] = i+1;
-			//'arr' is an array of 1,2,3,...,n
-		}
+		
+		
+		
+		int[] arr = getRow(0);
 		
 		
 		for (int iRow = 0;iRow<myLatinSquare.length;iRow++)
@@ -195,15 +159,21 @@ i+=1
 			}
 		}
 		
+		if (ContainsZero() == true)
+		{
+			a = false;
+		}
 		
 		return a;
 		
 	}
-		
 	
-	//public LatinSquare() {
+	
+	public LatinSquare()
+	{
 		
-	//}
+	}
+	
 	
 	public LatinSquare(int[][] myLatinSquare) 
 	{
