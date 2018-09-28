@@ -1,5 +1,8 @@
 package pkgGame;
 
+import pkgEnum.ePuzzleViolation;
+import pkgHelper.LatinSquare;
+import pkgHelper.PuzzleViolation;
 import java.security.SecureRandom;
 import java.util.*;
 
@@ -7,168 +10,263 @@ import pkgHelper.LatinSquare;
 
 public class Sudoku extends LatinSquare {
 
-		
-		private int iSize;
-		private int iSqrtSize;
+	/**
+	 * 
+	 * iSize - the length of the width/height of the Sudoku puzzle.
+	 * 
+	 * @version 1.2
+	 * @since Lab #2
+	 */
+	private int iSize;
 
-		
-		public Sudoku(int iSize) throws Exception {
-			this.iSize = iSize;
+	/**
+	 * iSqrtSize - SquareRoot of the iSize. If the iSize is 9, iSqrtSize will be
+	 * calculated as 3
+	 * 
+	 * @version 1.2
+	 * @since Lab #2
+	 */
 
-			double SQRT = Math.sqrt(iSize);
-			if ((SQRT == Math.floor(SQRT)) && !Double.isInfinite(SQRT)) {
-				this.iSqrtSize = (int) SQRT;
-			} else {
-				throw new Exception("Invalid size");
+	private int iSqrtSize;
+
+	/**
+	 * Sudoku - for Lab #2... do the following:
+	 * 
+	 * set iSize If SquareRoot(iSize) is an integer, set iSqrtSize, otherwise throw
+	 * exception
+	 * 
+	 * @version 1.2
+	 * @since Lab #2
+	 * @param iSize-
+	 *            length of the width/height of the puzzle
+	 * @throws Exception
+	 *             if the iSize given doesn't have a whole number square root
+	 */
+	public Sudoku(int iSize) throws Exception {
+		this.iSize = iSize;
+
+		double SQRT = Math.sqrt(iSize);
+		if ((SQRT == Math.floor(SQRT)) && !Double.isInfinite(SQRT)) {
+			this.iSqrtSize = (int) SQRT;
+		} else {
+			throw new Exception("Invalid size");
+		}
+	}
+
+	/**
+	 * Sudoku - pass in a given two-dimensional array puzzle, create an instance.
+	 * Set iSize and iSqrtSize
+	 * 
+	 * @version 1.2
+	 * @since Lab #2
+	 * @param puzzle
+	 *            - given (working) Sudoku puzzle. Use for testing
+	 * @throws Exception will be thrown if the length of the puzzle do not have a whole number square root
+	 */
+	public Sudoku(int[][] puzzle) throws Exception {
+		super(puzzle);
+		this.iSize = puzzle.length;
+		double SQRT = Math.sqrt(iSize);
+		if ((SQRT == Math.floor(SQRT)) && !Double.isInfinite(SQRT)) {
+			this.iSqrtSize = (int) SQRT;
+		} else {
+			throw new Exception("Invalid size");
+		}
+
+	}
+
+	/**
+	 * getPuzzle - return the Sudoku puzzle
+	 * 
+	 * @version 1.2
+	 * @since Lab #2
+	 * @return - returns the LatinSquare instance
+	 */
+	public int[][] getPuzzle() {
+		return super.getLatinSquare();
+	}
+
+	/**
+	 * getRegion - figure out what region you're in based on iCol and iRow and call
+	 * getRegion(int)<br>
+	 * 
+	 * Example, the following Puzzle:
+	 * 
+	 * 0 1 2 3 <br>
+	 * 1 2 3 4 <br>
+	 * 3 4 1 2 <br>
+	 * 4 1 3 2 <br>
+	 * 
+	 * getRegion(0,3) would call getRegion(1) and return [2],[3],[3],[4]
+	 * 
+	 * @version 1.2
+	 * @since Lab #2
+	 * @param iCol
+	 *            given column
+	 * @param iRow
+	 *            given row
+	 * @return - returns a one-dimensional array from a given region of the puzzle
+	 */
+	public int[] getRegion(int iCol, int iRow) {
+
+		int i = (iCol / iSqrtSize) + ((iRow / iSqrtSize) * iSqrtSize);
+
+		return getRegion(i);
+	}
+
+	/**
+	 * getRegion - pass in a given region, get back a one-dimensional array of the
+	 * region's content<br>
+	 * 
+	 * Example, the following Puzzle:
+	 * 
+	 * 0 1 2 3 <br>
+	 * 1 2 3 4 <br>
+	 * 3 4 1 2 <br>
+	 * 4 1 3 2 <br>
+	 * 
+	 * getRegion(2) and return [3],[4],[4],[1]
+	 * 
+	 * @version 1.2
+	 * @since Lab #2
+	 * @param r
+	 *            given region
+	 * @return - returns a one-dimensional array from a given region of the puzzle
+	 */
+
+	public int[] getRegion(int r) {
+
+		int[] reg = new int[super.getLatinSquare().length];
+
+
+		int i = (r / iSqrtSize) * iSqrtSize;
+		int j = (r % iSqrtSize) * iSqrtSize;		
+		int jMax = j + iSqrtSize;
+		int iMax = i + iSqrtSize;
+		int iCnt = 0;
+
+		for (; i < iMax; i++) {
+			for (j = (r % iSqrtSize) * iSqrtSize; j < jMax; j++) {
+				reg[iCnt++] = super.getLatinSquare()[i][j];
 			}
 		}
 
-		
-		public Sudoku(int[][] puzzle) throws Exception {
-			super(puzzle);
-			this.iSize = puzzle.length;
-			double SQRT = Math.sqrt(iSize);
-			if ((SQRT == Math.floor(SQRT)) && !Double.isInfinite(SQRT)) {
-				this.iSqrtSize = (int) SQRT;
-			} else {
-				throw new Exception("Invalid size");
-			}
-
-		}
-
-		public int[][] getPuzzle() {
-			return super.getLatinSquare();
-		}
-
-		
-		public int[] getRegion(int iCol, int iRow) {
-
-			int i = (iCol / iSqrtSize) + ((iRow / iSqrtSize) * iSqrtSize);
-
-			return getRegion(i);
-		}
-
-		
-
-		public int[] getRegion(int r) {
-
-			int[] reg = new int[super.getLatinSquare().length];
-
-			int j = (r % iSqrtSize) * iSqrtSize;
-			int i = (r / iSqrtSize) * iSqrtSize;
-			int jMax = j + iSqrtSize;
-			int iMax = i + iSqrtSize;
-			int iCnt = 0;
-
-			for (; i < iMax; i++) {
-				for (j = (r % iSqrtSize) * iSqrtSize; j < jMax; j++) {
-					reg[iCnt++] = super.getLatinSquare()[i][j];
-				}
-			}
-
-			return reg;
-		}
+		return reg;
+	}
 	
-		
-	public boolean isValueValid(int iCol, int iRow, int iValue)
+ 
+	
+	@Override
+	public boolean hasDuplicates()
 	{
-		boolean a = true;
-		if (super.doesElementExist(super.getRow(iRow),iValue) == true)
-		{
-			a = false;
-		}
-		if (super.doesElementExist(super.getColumn(iCol),iValue) == true)
-		{
-			a = false;	
-		}
-		if (super.doesElementExist(getRegion(iCol,iRow),iValue) == true)
-		{
-			a = false;
-		}
-		return a;
+		if (super.hasDuplicates())
+			return true;
 		
-	}
-	
-	
-	
-	public boolean isSudoku() {
-		boolean a = true;
-		boolean b;
-		int c;
-		int[][] mySud = super.getLatinSquare();
-		int zeroCheck = 0;
-		
-		if (super.isLatinSquare() == false)
-		{
-			//Checking if actually a latin square
-			a = false;
-		}
-		
-		if (super.ContainsZero() == true)
-		{
-			a = false;
-		}
-		
-		
-		for(int i=0;i<iSize;i++)
-		{
-			for(int j=0;j<iSize;j++)
-			{
-				c = mySud[i][j];
-				mySud[i][j] = 0;
-				if(c!= zeroCheck)
-				{
-					b = isValueValid(j,i,c);
-					if(b == false)
-					{
-						a = false;
-						break;
-					}
-				}
-				mySud[i][j] = c;
-				//Reset back
+		for (int k = 0; k < this.getPuzzle().length; k++) {
+			if (super.hasDuplicates(getRegion(k))) {
+				super.AddPuzzleViolation(new PuzzleViolation(ePuzzleViolation.DupRegion,k));
 			}
-			
 		}
-		return a;
-	}
 	
+		return (super.getPV().size() > 0);
+	}
+
+	/**
+	 * isPartialSudoku - return 'true' if...
+	 * 
+	 * It's a LatinSquare If each region doesn't have duplicates If each element in
+	 * the first row of the puzzle is in each region of the puzzle At least one of
+	 * the elemnts is a zero
+	 * 
+	 * 
+	 * @version 1.2
+	 * @since Lab #2
+	 * @return true if the given puzzle is a partial sudoku
+	 */
 	public boolean isPartialSudoku() {
 
-		boolean a = true;
-		boolean b;
-		int c;
-		int zeroCheck = 0;
-		int[][] mySud = super.getLatinSquare();
+		super.setbIgnoreZero(true);
 		
-		if(super.ContainsZero() == false)
-		{
-			a = false;
+		super.ClearPuzzleViolation();
+		
+		if (hasDuplicates())
+			return false;
+
+		if (!ContainsZero()) {
+			super.AddPuzzleViolation(new PuzzleViolation(ePuzzleViolation.MissingZero, -1));
+			return false;
 		}
+		return true;
+
+	}
+
+	/**
+	 * isSudoku - return 'true' if...
+	 * 
+	 * Is a partialSudoku Each element doesn't a zero
+	 * 
+	 * @version 1.2
+	 * @since Lab #2
+	 * @return - returns 'true' if it's a partialSudoku, element match (row versus column) and no zeros
+	 */
+	public boolean isSudoku() {
+
+		this.setbIgnoreZero(false);
 		
-		for(int i=0;i<iSize;i++)
-		{
-			for(int j=0;j<iSize;j++)
-			{
-				c = mySud[i][j];
-				mySud[i][j] = 0;
-				if(c!= zeroCheck)
-				{
-					b = isValueValid(j,i,c);
-					if(b == false)
-					{
-						a = false;
-						break;
-					}
-				}
-				mySud[i][j] = c;
-				//Reset back
+		super.ClearPuzzleViolation();
+		
+		if (hasDuplicates())
+			return false;
+		
+		if (!super.isLatinSquare())
+			return false;
+		
+		for (int i = 1; i < super.getLatinSquare().length; i++) {
+
+			if (!hasAllValues(getRow(0), getRegion(i))) {
+				return false;
 			}
 		}
-	
-		return a;
+
+		if (ContainsZero()) {
+			return false;
+		}
+
+		return true;
 	}
-	
+
+	/**
+	 * isValidValue - test to see if a given value would 'work' for a given column /
+	 * row
+	 * 
+	 * @version 1.2
+	 * @since Lab #2
+	 * @param iCol
+	 *            puzzle column
+	 * @param iRow
+	 *            puzzle row
+	 * @param iValue
+	 *            given value
+	 * @return - returns 'true' if the proposed value is valid for the row and column
+	 */
+	public boolean isValidValue(int iCol, int iRow, int iValue) {
+		
+		if (doesElementExist(super.getRow(iRow),iValue))
+		{
+			return false;
+		}
+		if (doesElementExist(super.getColumn(iCol),iValue))
+		{
+			return false;
+		}
+		if (doesElementExist(this.getRegion(iCol, iRow),iValue))
+		{
+			return false;
+		}
+		
+		return true;
+	}
+
 	public int[][] createSudoku()
 	{
 		FillDiagonalRegions();
